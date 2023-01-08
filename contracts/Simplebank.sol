@@ -6,6 +6,7 @@ contract Simplebank {
   mapping(address => bool) private funders;
   mapping(uint => address) private lutFunders;
   address public owner;
+  mapping(address => uint) private fundersCumSum;
 
   constructor (){
     owner = msg.sender;
@@ -26,6 +27,10 @@ contract Simplebank {
       uint index = numberOfFunders++;
       funders[funder]=true;
       lutFunders[index] = funder;
+      fundersCumSum[funder] = msg.value;
+    }
+    else{
+      fundersCumSum[funder] += fundersCumSum[funder] + msg.value;
     }
   }
   
@@ -43,9 +48,8 @@ contract Simplebank {
   }
 }
 
-
-// truffle console
 // truffle migrate --reset
+// truffle console
 // const instance = await Simplebank.deployed()
 // instance.addFunds({value:"500000000000000000", from:accounts[0]})
 // instance.addFunds({value:"500000000000000000", from:accounts[1]})
