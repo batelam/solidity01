@@ -51,5 +51,5 @@ contract Simplebank {
 // instance.addFunds({value:"500000000000000000", from:accounts[1]})
 // const funds = instance.funds()
 // instance.getAllFunders()
-// instance.withdraw(1000000000000000000)
+// instance.withdraw("1000000000000000000", {from:accounts[1]})
 // instance.transferOwnership("0xf225f73d2E74abd44Aee05064e658870Aa865D38")
